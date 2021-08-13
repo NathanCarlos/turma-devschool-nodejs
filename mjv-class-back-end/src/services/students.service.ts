@@ -18,6 +18,10 @@ export class StudentsServices {
         return StudentRepository.getById(id);
     }
 
+    authenticate(email: string, password: string) {
+        return StudentRepository.findByEmailAndPassword(email, password);
+    }
+
     createStudent(student: Student) {
         return StudentRepository.create(student);
     }

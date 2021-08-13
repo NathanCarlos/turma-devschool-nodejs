@@ -20,6 +20,15 @@ routes.get('/details/:id', async (req: Request, res: Response) => {
     res.send(student);
 });
 
+routes.post('/authenticate', async (req: Request, res: Response) => {
+    const authenticate = req.body;
+    const student = await studentsServices.authenticate(authenticate.email, authenticate.password);
+    if(!student) {
+        return res.status(404).send(createMessageObject("Estudante não encontrado!"));
+    }
+    res.send(student);
+});
+
 routes.post('/create', async (req: Request, res: Response) => {
     const student = req.body;
     if(!student) {

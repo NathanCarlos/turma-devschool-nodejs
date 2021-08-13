@@ -14,6 +14,11 @@ export class StudentRepository {
         return studentRepository.findOne(id);
     }
 
+    static findByEmailAndPassword(email: string, password: string) {
+        const studentRepository = getConnection().getRepository(Student);
+        return studentRepository.findOne({ where: { email, password } });
+    }
+
     static create(student: Student) {
         const studentRepository = getConnection().getRepository(Student);
         return studentRepository.insert(student);
